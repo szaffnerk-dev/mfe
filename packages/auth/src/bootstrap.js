@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { createMemoryHistory, createBrowserHistory } from "history";
 
-const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
+const mount = (el, { onNavigate, defaultHistory, initialPath, onSignIn }) => {
   const history =
     defaultHistory ||
     createMemoryHistory({
@@ -16,7 +16,7 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
   }
   ReactDOM.render(
     <BrowserRouter>
-      <App history={history} />
+      <App history={history} onSignIn={onSignIn} />
     </BrowserRouter>,
     el,
   );
@@ -32,7 +32,7 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
 };
 
 if (process.env.NODE_ENV === "development") {
-  const devRoot = document.getElementById("_marketing-dev-root");
+  const devRoot = document.getElementById("_auth-dev-root");
   if (devRoot) {
     mount(devRoot, { defaultHistory: createBrowserHistory() });
   }
