@@ -16,9 +16,7 @@ export default function AuthApp({ onSignIn }) {
         }
       },
       onSignIn: (data) => {
-        console.log("onSignIn", data);
         onSignIn();
-        history.push("/");
       },
     });
 
